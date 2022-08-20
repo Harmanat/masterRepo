@@ -1,0 +1,68 @@
+type Mutation {
+	createMaster(id:ID!, userName: String, password: String, firstName: String, lastName: String,
+			phoneNumber: Long, emailAddress: String):Master
+	createHospital(hospitalName: String, hospitalAdd: String, deptName: String, deptUserName: String, deptFirstName: String, 
+			deptLastName: String, deptPhoneNumber: Long, deptEmail: String):Hospital
+}
+
+type Query {
+	masters(count: Int):[Master]
+	masterstatistics(count: Int):[MasterStatistics]
+	masterDepartments(count: Int): [Departments]
+	hospitals(count: Int): [Hospital]
+	departmentStatistics(count: Int): [DepartmentStatistics]
+}
+
+type Master {
+	id: ID!,
+	userName: String,
+	password: String,
+	firstName: String,
+	lastName: String,
+	phoneNumber: Long,
+	emailAddress: String
+}
+
+type MasterStatistics {
+	id: ID!,
+	numOfInstances: Int,
+	upSince: Int
+	sysAdmFName: String,
+	sysAdmLName: String,
+	sysAdmPhone: Long,
+	sysAdmEmail: String
+}
+
+type Departments {
+	id: ID!,
+	deptName: String,
+	depAdmUserName: String,
+	depAdmPassword: String,
+	depAdmFName: String,
+	depAdmLName: String,
+	depAdmEmail: String,
+	depAdmPhone: Long,
+}
+
+type Hospital{
+	id: ID!,
+	hospitalName: String,
+	hospitalAdd: String,
+	deptName: String,
+	deptUserName: String,
+	deptFirstName: String,
+	deptLastName: String,
+	deptPhoneNumber: Long,
+	deptEmail: String
+}
+
+type DepartmentStatistics{
+	id: ID!,
+	numOfClinicalStaff: Int,
+	numOfConsumers: Int,
+	numOfSessionsDone: Int,
+	totalLengthOfAllSessions: Long,
+	avgSessionDuration: Long,
+	avgAttendeesPerSession: Int,
+	Hospital: Hospital
+}
